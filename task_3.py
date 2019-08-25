@@ -22,7 +22,7 @@ def func_task_3(n):
 import unittest
 
 
-class TestTask2(unittest.TestCase):
+class TestTask3(unittest.TestCase):
     def test_short(self):
         self.assertEqual(func_task_3(13195), 29)
 
