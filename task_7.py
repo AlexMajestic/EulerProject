@@ -4,18 +4,17 @@ def func_task_7(n):
 
     Какое число является 10001-ым простым числом?
     """
-    counter = num = 1
-    simple = [2]
-    while counter < n:
-        num += 2
-        for i in simple:
-            if num % i == 0:
-                break
-        else:
+    counter = 0
+    simple = list(range(n * 100))
+    simple[1] = 0
+    for i in simple:
+        if i > 1:
             counter += 1
-            simple.append(num)
+            for j in range(i + i, len(simple), i):
+                simple[j] = 0
 
-    return num
+            if counter == n:
+                return i
 
 
 # Ниже приведены тесты
