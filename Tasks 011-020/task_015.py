@@ -5,30 +5,17 @@ def func_task_15(n):
 
     Сколько существует таких маршрутов в сетке 20×20?
     """
+    n += 1
+    matrix = [[0] * (n + 1) for _ in range(n + 1)]
+    matrix[1][1] = 1
 
-    trianle = []
-    max_size = 2 * n + 1
+    for i in range(1, n + 1):
+        for j in range(1, n + 1):
+            if i == 1 and j == 1:
+                continue
+            matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1]
 
-    for i in range(max_size):
-        row = []
-        for j in range(max_size):
-            row += [0]
-        trianle.append(row)
-
-    trianle[0][0] = 1
-    trianle[1][0] = trianle[1][1] = 1
-
-    for i in range(2, max_size):
-        for j in range(i + 1):
-            if j == 0:
-                trianle[i][j] = trianle[i - 1][j]
-            elif j == i:
-                trianle[i][j] = trianle[i - 1][j - 1]
-            else:
-                trianle[i][j] = trianle[i - 1][j - 1] + trianle[i - 1][j]
-
-    return max(trianle[max_size - 1])
-
+    return matrix[n][n]
 
 # Ниже приведены тесты
 import unittest
